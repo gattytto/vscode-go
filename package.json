@@ -1,9 +1,9 @@
 {
   "name": "go",
   "displayName": "Go",
-  "version": "0.23.0-dev",
+  "version": "0.23.1-dev",
   "preview": true,
-  "publisher": "golang",
+  "publisher": "gattytto",
   "description": "Rich Go language support for Visual Studio Code",
   "author": {
     "name": "Go Team at Google"
