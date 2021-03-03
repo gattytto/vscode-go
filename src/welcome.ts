@@ -35,10 +35,10 @@ export class WelcomePanel {
 				enableScripts: true,
 
 				// And restrict the webview to only loading content from our extension's directory.
-				localResourceRoots: [vscode.Uri.joinPath(extensionUri)]
+				localResourceRoots: [vscode.Uri.parse(extensionUri.path)]
 			}
 		);
-		panel.iconPath = vscode.Uri.joinPath(extensionUri, 'media', 'go-logo-blue.png');
+		panel.iconPath = vscode.Uri.parse(extensionUri + 'media' + 'go-logo-blue.png');
 
 		WelcomePanel.currentPanel = new WelcomePanel(panel, extensionUri);
 	}
@@ -55,7 +55,9 @@ export class WelcomePanel {
 	private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
 		this.panel = panel;
 		this.extensionUri = extensionUri;
-		this.dataroot = vscode.Uri.joinPath(this.extensionUri, 'media');
+		this.dataroot = vscode.Uri.parse(this.extensionUri+'/media');
+		
+
 
 		// Set the webview's initial html content
 		this.update();
@@ -73,7 +75,7 @@ export class WelcomePanel {
 						vscode.window.showErrorMessage(message.text);
 						return;
 					case 'openDocument':
-						const uri = vscode.Uri.joinPath(this.extensionUri, message.document);
+						const uri = vscode.Uri.parse(this.extensionUri+"/"+message.document);
 						vscode.commands.executeCommand('markdown.showPreviewToSide', uri);
 						return;
 					case 'openSetting':
@@ -107,10 +109,10 @@ export class WelcomePanel {
 
 	private getHtmlForWebview(webview: vscode.Webview) {
 		// Local path to css styles and images
-		const scriptPathOnDisk = vscode.Uri.joinPath(this.dataroot, 'welcome.js');
-		const stylePath = vscode.Uri.joinPath(this.dataroot, 'welcome.css');
-		const gopherPath = vscode.Uri.joinPath(this.dataroot, 'go-logo-blue.png');
-		const announcePath = vscode.Uri.joinPath(this.dataroot, 'announce.png');
+		const scriptPathOnDisk = vscode.Uri.parse(this.dataroot+ '/welcome.js');
+		const stylePath = vscode.Uri.parse(this.dataroot+ '/welcome.css');
+		const gopherPath = vscode.Uri.parse(this.dataroot+ '/go-logo-blue.png');
+		const announcePath = vscode.Uri.parse(this.dataroot+ '/announce.png');
 		const goExtension = vscode.extensions.getExtension(extensionId)!;
 		const goExtensionVersion = goExtension.packageJSON.version;
 
