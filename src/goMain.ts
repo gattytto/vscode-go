@@ -575,7 +575,7 @@ If you would like additional configuration for diagnostics from gopls, please se
 
 	ctx.subscriptions.push(
 		vscode.commands.registerCommand('go.welcome', () => {
-			WelcomePanel.createOrShow(ctx.extensionUri);
+	//		WelcomePanel.createOrShow(ctx.extensionUri);
 		})
 	);
 
