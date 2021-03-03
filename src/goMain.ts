@@ -575,7 +575,7 @@ If you would like additional configuration for diagnostics from gopls, please se
 
 	ctx.subscriptions.push(
 		vscode.commands.registerCommand('go.welcome', () => {
-	//		WelcomePanel.createOrShow(ctx.extensionUri);
+			WelcomePanel.createOrShow(ctx.extensionUri);
 		})
 	);
 
@@ -677,9 +677,9 @@ function showGoWelcomePage(ctx: vscode.ExtensionContext) {
 
 	const savedGoExtensionVersion = getFromGlobalState(goExtensionVersionKey, '');
 
-	if (shouldShowGoWelcomePage(showVersions, goExtensionVersion, savedGoExtensionVersion)) {
+	/*if (shouldShowGoWelcomePage(showVersions, goExtensionVersion, savedGoExtensionVersion)) {
 		WelcomePanel.createOrShow(ctx.extensionUri);
-	}
+	}*/
 	if (goExtensionVersion !== savedGoExtensionVersion) {
 		updateGlobalState(goExtensionVersionKey, goExtensionVersion);
 	}
@@ -935,7 +935,7 @@ async function getConfiguredGoToolsCommand() {
 		}
 		outputChannel.appendLine(`   ${tool.name}: ${toolPath} ${msg}`);
 	});
-
+	
 	let folders = vscode.workspace.workspaceFolders?.map((folder) => {
 		return { name: folder.name, path: folder.uri.fsPath };
 	});
